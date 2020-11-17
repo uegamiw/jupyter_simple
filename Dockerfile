@@ -1,12 +1,13 @@
 FROM python:3.8-slim
-USER root
-WORKDIR /usr/src/app
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    curl && \
-    apt-get clean
+# update
+RUN apt-get -y update && apt-get install -y \
+    sudo \
+    wget \
+    curl \
+    vim
 
+# install nescessary packages
 RUN python -m pip install --upgrade pip && pip install \
 	pandas \
 	numpy \
