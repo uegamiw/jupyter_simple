@@ -5,7 +5,9 @@ RUN apt-get -y update && apt-get install -y \
     sudo \
     wget \
     curl \
-    vim
+    vim \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # install nescessary packages
 RUN python -m pip install --upgrade pip && pip install \
@@ -14,16 +16,17 @@ RUN python -m pip install --upgrade pip && pip install \
 	tqdm \
 	scipy \
 	matplotlib \
-        seaborn \
+	seaborn \
 	ipython \
 	scikit-learn \
 	scikit-image \
 	pillow \
 	jupyterlab \
-	opencv-python
+	opencv-python \
+	--no-cache-dir
   
 WORKDIR /
-RUN mkdir /work
+RUN mkdir /home/data && mkdir /home/script && mkdir /home/model
  
 # execute jupyterlab as a default command
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--LabApp.token=''"]
