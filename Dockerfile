@@ -27,3 +27,6 @@ RUN mkdir /work
  
 # execute jupyterlab as a default command
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--LabApp.token=''"]
+
+# example
+# docker run -p 8889:8888 -v D:\UIP_study:/work --name jupyter jupyter_slim
